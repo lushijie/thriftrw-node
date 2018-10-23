@@ -1,5 +1,5 @@
 {
-  "name": "thriftrw",
+  "name": "@lushijie/thriftrw",
   "version": "3.11.2",
   "description": "thrift encoding/decoding using bufrw",
   "keywords": [],
