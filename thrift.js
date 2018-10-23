@@ -130,6 +130,12 @@ function Thrift(options) {
         /* eslint-enable max-len */
         this.filename = path.resolve(this.filename);
         source = this.fs.readFileSync(this.filename, 'ascii');
+
+        // start lushijie fix: 中文注释出错
+        source = this.fs.readFileSync(this.filename, 'utf-8');
+        source.replace(/\/\/.*/g, '');
+        // end lushijie fix
+
         this.idls[this.filename] = source;
     }
 

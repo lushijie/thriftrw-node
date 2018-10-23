@@ -37,13 +37,18 @@ var ThriftUnrecognizedException = require('./unrecognized-exception')
 var readType = require('./read').readType;
 
 function ThriftField(def, struct) {
-    assert(def.isResult || def.id.value > 0,
-        'field identifier must be greater than 0' +
-        ' for ' + JSON.stringify(def.name) +
-        ' on ' + JSON.stringify(struct.name) +
-        ' at ' + def.id.line + ':' + def.id.column
-    );
-    this.id = def.id.value;
+    // assert(def.isResult || def.id.value > 0,
+    //    'field identifier must be greater than 0' +
+    //    ' for ' + JSON.stringify(def.name) +
+    //    ' on ' + JSON.stringify(struct.name) +
+    //    ' at ' + def.id.line + ':' + def.id.column
+    // );
+    // this.id = def.id.value;
+
+    // start lushijie fix: 形参没有标号导致错误
+    this.id = (def.id || {}).value;
+    // end lushijie fix
+
     this.name = def.name;
     this.required = def.required;
     this.optional = def.optional;
