@@ -260,6 +260,11 @@ Thrift.prototype._compile = function _compile(defs) {
 };
 
 Thrift.prototype.compileInclude = function compileInclude(def) {
+    // lushijie fix
+    if (def.id.lastIndexOf('./', 0) === -1 || def.id.lastIndexOf('../', -1) === 0) {
+        def.id = './' + def.id;
+    }
+
     if (def.id.lastIndexOf('./', 0) === 0 ||
         def.id.lastIndexOf('../', 0) === 0) {
         var ns = def.namespace && def.namespace.name;
